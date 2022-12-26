@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaBillExtractor
 * Unit: Job.BackgroundJob.pas
-* Description: Р Р°Р±РѕС‚Р° РІС‹РїРѕР»РЅСЏРµРјР°СЏ РІ С„РѕРЅРѕРІРѕРј СЂРµР¶РёРјРµ
+* Description: Работа выполняемая в фоновом режиме
 *
 * Created: 15.12.2022 10:16:32
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Job.BackgroundJob;
 
@@ -22,37 +22,37 @@ type
   end;
 
   /// <summary>IBackgroundJob
-  /// Р Р°Р±РѕС‚Р° РІС‹РїРѕР»РЅСЏРµРјР°СЏ РІ С„РѕРЅРѕРІРѕРј СЂРµР¶РёРјРµ
+  /// Работа выполняемая в фоновом режиме
   /// </summary>
   IBackgroundJob = interface(IPublisher<TBackgroundJobMessage>)
     ['{F01EEFDA-BE38-467B-B9BB-B4E2363522FD}']
     function GetCaption: string; stdcall;
     procedure SetCaption(const Value: string); stdcall;
     /// <summary>IBackgroundJob.Task
-    /// Р—Р°РґР°С‡Р° РІС‹РїРѕР»РЅСЏСЋС‰Р°СЏ СЂР°Р±РѕС‚Сѓ
+    /// Задача выполняющая работу
     /// </summary>
     /// <returns> ITask
     /// </returns>
     function Task: ITask; stdcall;
     /// <summary>IBackgroundJob.Caption
-    /// РќР°РёРјРµРЅРѕРІР°РЅРёРµ СЂР°Р±РѕС‚С‹
+    /// Наименование работы
     /// </summary>
     /// type:String
     property Caption: string read GetCaption write SetCaption;
     /// <summary>IBackgroundJob.SendJobMessage
-    /// РћС‚РїСЂР°РІРёС‚СЊ РїРѕРґРїРёСЃС‡РёРєР°Рј СЃРѕРѕР±С‰РµРЅРёРµ</summary>
+    /// Отправить подписчикам сообщение</summary>
     /// <param name="AMessage"> (TBackgroundJobMessage) </param>
     procedure SendJobMessage(const AMessage: TBackgroundJobMessage); stdcall;
     /// <summary>IBackgroundJob.GetMessages
-    /// РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє СЃРѕРѕР±С‰РµРЅРёР№ РѕС‚РїСЂР°РІР»РµРЅРЅС‹С… СЂР°Р±РѕС‚РѕР№ СЂР°РЅРµРµ
+    /// Получить список сообщений отправленных работой ранее
     /// </summary>
-    /// <param name="AMessageList"> (TList<TBackgroundJobMessage>) СЃРїРёСЃРѕРє РґР»СЏ
-    /// Р·Р°РїРѕР»РЅРµРЅРёСЏ</param>
+    /// <param name="AMessageList"> (TList<TBackgroundJobMessage>) список для
+    /// заполнения</param>
     procedure GetMessages(AMessageList: TList<TBackgroundJobMessage>); stdcall;
   end;
 
   /// <summary>TBackgroundJob
-  /// Р РµР°Р»РёР·Р°С†РёСЏ IBackgroundJob
+  /// Реализация IBackgroundJob
   /// </summary>
   TBackgroundJob = class(TPublisher<TBackgroundJobMessage>, IBackgroundJob)
   strict private
@@ -73,7 +73,7 @@ type
     destructor Destroy; override;
   end;
 
-{$REGION РўРёРїС‹ СЃРѕРѕР±С‰РµРЅРёР№ РѕС‚ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹ РїРѕРґРїРёСЃС‡РёРєР°Рј}
+{$REGION Типы сообщений от фоновой работы подписчикам}
 
   TBackgroundJobMessage = class abstract
   private
@@ -86,7 +86,7 @@ type
   end;
 
   /// <summary>TChangeCaptionMessage
-  /// РР·РјРµРЅРµРЅРѕ РЅР°РёРјРµРЅРѕРІР°РЅРёРµ СЂР°Р±РѕС‚С‹
+  /// Изменено наименование работы
   /// </summary>
   TChangeCaptionMessage = class(TBackgroundJobMessage)
   private
@@ -97,7 +97,7 @@ type
   end;
 
   /// <summary>TJobTextMessage
-  /// РўРµРєСЃС‚РѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ Рѕ СЃС‚Р°С‚СѓСЃРµ СЂР°Р±РѕС‚С‹
+  /// Текстовое сообщение о статусе работы
   /// </summary>
   TJobTextMessage = class(TBackgroundJobMessage)
   private
@@ -111,7 +111,7 @@ type
   end;
 
   /// <summary>TJobPercentDoneMessage
-  /// РР·РјРµРЅРёР»СЃСЏ РїСЂРѕС†РµРЅС‚ РІС‹РїРѕР»РЅРµРЅРёСЏ СЂР°Р±РѕС‚С‹
+  /// Изменился процент выполнения работы
   /// </summary>
   TJobPercentDoneMessage = class(TBackgroundJobMessage)
   private
@@ -122,7 +122,7 @@ type
   end;
 
   /// <summary>TRichTextOptions
-  /// РџР°СЂР°РјРµС‚СЂС‹ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚Р°
+  /// Параметры форматирования текста
   /// </summary>
   TRichTextOptions = record
   public
@@ -136,7 +136,7 @@ type
   end;
 
   /// <summary>TJobRichTextMessage
-  /// РўРµРєСЃС‚РѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ СЃ С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРёРµРј
+  /// Текстовое сообщение с форматированием
   /// </summary>
   TJobRichTextMessage = class(TJobTextMessage)
   private
@@ -147,7 +147,7 @@ type
   end;
 
   /// <summary>TJobStartedMessage
-  /// РќР°С‡Р°С‚Рѕ РІС‹РїРѕР»РЅРµРЅРёРµ СЂР°Р±РѕС‚С‹
+  /// Начато выполнение работы
   /// </summary>
   TJobStartedMessage = class(TJobRichTextMessage)
   private
@@ -157,7 +157,7 @@ type
 
 
   /// <summary>TJobFinishedMessage
-  /// Р Р°Р±РѕС‚Р° Р·Р°РєРѕРЅС‡РµРЅР°
+  /// Работа закончена
   /// </summary>
   TJobFinishedMessage = class abstract(TJobRichTextMessage)
   private
@@ -165,7 +165,7 @@ type
   end;
 
   /// <summary>TJobCompletedMessage
-  /// Р Р°Р±РѕС‚Р° Р·Р°РІРµСЂС€РµРЅР° С€С‚Р°С‚РЅРѕ
+  /// Работа завершена штатно
   /// </summary>
   TJobCompletedMessage = class(TJobFinishedMessage)
   private
@@ -174,7 +174,7 @@ type
   end;
 
   /// <summary>TJobCanceledMessage
-  /// Р Р°Р±РѕС‚Р° РїСЂРµСЂРІР°РЅР°
+  /// Работа прервана
   /// </summary>
   TJobCanceledMessage = class(TJobFinishedMessage)
   private
@@ -183,7 +183,7 @@ type
   end;
 
   /// <summary>TJobFaultMessage
-  /// Р Р°Р±РѕС‚Р° Р·Р°РІРµСЂС€РµРЅР° СЃ РѕС€РёР±РєРѕР№
+  /// Работа завершена с ошибкой
   /// </summary>
   TJobFaultMessage = class(TJobFinishedMessage)
   private
@@ -206,10 +206,10 @@ var
 implementation
 
 resourcestring
-  SJobCompleted = 'Р—Р°РєРѕРЅС‡РµРЅРѕ РІС‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡Рё "%s"';
-  SJobCancelled = 'РџСЂРµСЂРІР°РЅРѕ РІС‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡Рё "%s"';
-  SJobStarted = 'РќР°С‡Р°С‚Рѕ РІС‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡Рё "%s"';
-  SJobFault = 'РћРЁРР‘РљРђ: Р’С‹РїРѕР»РЅРµРЅРёРµ Р·Р°РґР°С‡Рё "%s" Р·Р°РІРµСЂС€РµРЅРѕ СЃ РѕС€РёР±РєРѕР№ "%s"';
+  SJobCompleted = 'Закончено выполнение задачи "%s"';
+  SJobCancelled = 'Прервано выполнение задачи "%s"';
+  SJobStarted = 'Начато выполнение задачи "%s"';
+  SJobFault = 'ОШИБКА: Выполнение задачи "%s" завершено с ошибкой "%s"';
 
 constructor TBackgroundJob.Create(const ACaption: string; const AProc: TProc<
   IBackgroundJob>);

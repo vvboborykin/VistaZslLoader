@@ -1,4 +1,4 @@
-п»їunit ConsoleLoader;
+unit ConsoleLoader;
 
 interface
 
@@ -12,10 +12,10 @@ type
     FDone: Boolean;
     FConsoleDisplay: TConsoleDisplay;
     /// <summary>ISubscriber<TMessageData>.OnPublisherMessage
-    /// СњР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РїРѕР»СѓС‡Р°РµРјС‹С… РѕС‚ РёР·РґР°С‚РµР»РµР№
+    /// Обработчик событий получаемых от издателей
     /// </summary>
-    /// <param name="APublisher"> (IPublisher<TMessageData>) В»Р·РґР°С‚РµР»СЊ</param>
-    /// <param name="AMessage"> (TMessageData) вЂ”РѕР±С‹С‚РёРµ</param>
+    /// <param name="APublisher"> (IPublisher<TMessageData>) Издатель</param>
+    /// <param name="AMessage"> (TMessageData) Событие</param>
     procedure OnPublisherMessage(APublisher: IPublisher<TBackgroundJobMessage>;
       AMessage: TBackgroundJobMessage); stdcall;
   public

@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaBillExtractor
 * Unit: Job.TextDisplay.pas
-* Description: Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ С‚РµРєСЃС‚РѕРІС‹С… РґРёСЃРїР»РµРµРІ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹
+* Description: Базовый класс для текстовых дисплеев фоновой работы
 *
 * Created: 16.12.2022 13:39:55
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Job.TextDisplay;
 
@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TTextDisplay
-  /// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ С‚РµРєСЃС‚РѕРІС‹С… РґРёСЃРїР»РµРµРІ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹
+  /// Базовый класс для текстовых дисплеев фоновой работы
   /// </summary>
   TTextDisplay = class abstract(TThreadSafeInterfacedObject,
       IBackgroundJobSubscriber, ISubscriber<TBackgroundJobMessage>)
@@ -25,10 +25,10 @@ type
     procedure OutputTextToControl(AMessageText: String;
       AMessage: TBackgroundJobMessage); virtual; abstract;
     /// <summary>ISubscriber<TBackgroundJobMessage>.OnPublisherMessage
-    /// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РїРѕР»СѓС‡Р°РµРјС‹С… РѕС‚ РёР·РґР°С‚РµР»РµР№
+    /// Обработчик событий получаемых от издателей
     /// </summary>
-    /// <param name="APublisher"> (IPublisher<TBackgroundJobMessage>) РР·РґР°С‚РµР»СЊ</param>
-    /// <param name="AMessage"> (TBackgroundJobMessage) РЎРѕР±С‹С‚РёРµ</param>
+    /// <param name="APublisher"> (IPublisher<TBackgroundJobMessage>) Издатель</param>
+    /// <param name="AMessage"> (TBackgroundJobMessage) Событие</param>
     procedure OnPublisherMessage(APublisher: IPublisher<TBackgroundJobMessage>;
         AMessage: TBackgroundJobMessage); virtual; stdcall;
   public

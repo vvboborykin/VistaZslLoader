@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaZslLoader.Console
 * Unit: CommandLineServiceUnit.pas
-* Description: РЎР»СѓР¶Р±Р° РїР°СЂР°РјРµС‚СЂРѕРІ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё
+* Description: Служба параметров командной строки
 *
 * Created: 19.12.2022 13:31:28
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.CommandLineService;
 
@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TCommandLineService
-  /// РЎР»СѓР¶Р±Р° РїР°СЂР°РјРµС‚СЂРѕРІ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРё
+  /// Служба параметров командной строки
   /// </summary>
   TCommandLineService = class
   strict private
@@ -26,37 +26,37 @@ type
     constructor Create;
     destructor Destroy; override;
     /// <summary>TCommandLineService.GetValue
-    /// РџРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР° РїРѕ РёРјРµРЅРё
+    /// Получить значение параметра по имени
     /// </summary>
     /// <returns> String
     /// </returns>
-    /// <param name="AName"> (string) РРјСЏ РїР°СЂР°РјРµС‚СЂР°</param>
-    /// <param name="ADefaultValue"> (string) Р—РЅР°С‡РµРЅРёРµ РІРѕР·РІСЂР°С‰Р°РµРјРѕРµ РµСЃР»Рё РїР°СЂР°РјРµС‚СЂ РЅРµ
-    /// Р·Р°РґР°РЅ</param>
+    /// <param name="AName"> (string) Имя параметра</param>
+    /// <param name="ADefaultValue"> (string) Значение возвращаемое если параметр не
+    /// задан</param>
     function GetValue(AName, ADefaultValue: string): String;
     /// <summary>TCommandLineService.SwitchExists
-    /// РћРїСЂРµРґРµР»РёС‚СЊ Р·Р°РґР°РЅ Р»Рё РІ РєРѕРјР°РЅРґРЅРѕР№ СЃС‚СЂРѕРєРµ РєР»СЋС‡
+    /// Определить задан ли в командной строке ключ
     /// </summary>
     /// <returns> Boolean
     /// </returns>
-    /// <param name="AName"> (string) РРјСЏ РєР»СЋС‡Р°</param>
+    /// <param name="AName"> (string) Имя ключа</param>
     function SwitchExists(AName: string): Boolean;
     /// <summary>TCommandLineService.TryGetValue
-    /// РџРѕРїС‹С‚Р°С‚СЊСЃСЏ РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР°
+    /// Попытаться получить значение параметра
     /// </summary>
     /// <returns> Boolean
-    /// True РїСЂРё РЅР°Р№РґРµРЅРЅРѕРј РїР°СЂР°РјРµС‚СЂРµ
+    /// True при найденном параметре
     /// </returns>
-    /// <param name="AParameterName"> (string) РРјСЏ РїР°СЂР°РјРµС‚СЂР°</param>
-    /// <param name="AValue"> (string) Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР° РїСЂРё СѓСЃРїРµС€РЅРѕРј
-    /// РёСЃС…РѕРґРµ</param>
+    /// <param name="AParameterName"> (string) Имя параметра</param>
+    /// <param name="AValue"> (string) Возвращаемое значение параметра при успешном
+    /// исходе</param>
     function TryGetValue(AParameterName: string; var AValue: string): Boolean;
     /// <summary>TCommandLineService.ValueExists
-    /// РџСЂРѕРІРµСЂРёС‚СЊ СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»Рё Р·РЅР°С‡РµРЅРёРµ РїР°СЂР°РјРµС‚СЂР°
+    /// Проверить существует ли значение параметра
     /// </summary>
     /// <returns> Boolean
     /// </returns>
-    /// <param name="AParameterName"> (string) РРјСЏ РїР°СЂР°РјРµС‚СЂР°</param>
+    /// <param name="AParameterName"> (string) Имя параметра</param>
     function ValueExists(AParameterName: string): Boolean;
   end;
 

@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: DataSetHelper.pas
-* Description: Р Р°СЃС€РёСЂРµРЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё TDataSet
+* Description: Расширение функциональности TDataSet
 *
 * Created: 24.12.2022 11:09:55
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit DbLib.DataSetHelper;
 
@@ -15,37 +15,37 @@ uses
 
 type
   /// <summary>TDataSetHelper
-  /// Р Р°СЃС€РёСЂРµРЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё TDataSet
+  /// Расширение функциональности TDataSet
   /// </summary>
   TDataSetHelper = class helper for TDataSet
   public
     /// <summary>TDataSetHelper.ForEachRecord
-    /// РС‚РµСЂР°С‚РѕСЂ РїРѕ Р·Р°РїРёСЃСЏРј DataSet
+    /// Итератор по записям DataSet
     /// </summary>
-    /// <param name="AProc"> (TProc) РџСЂРѕС†РµРґСѓСЂР° РІС‹РїРѕР»РЅСЏРµРјР°СЏ РґР»СЏ Р·Р°РїРёСЃРµР№</param>
-    /// <param name="ADisableControls"> (Boolean) РћС‚РєР»СЋС‡Р°С‚СЊ РѕР±РЅРѕРІР»РµРЅРёРµ РІРёР·СѓР°Р»СЊРЅС‹С…
-    /// РєРѕРјРїРѕРЅРµРЅРѕРІ РїРѕРґРєР»СЋС‡РµРЅРЅС‹С… Рє DataSet</param>
-    /// <param name="AFilter"> (TFunc<Boolean>) РџСЂРµРґРёРєР°С‚ РѕС‚С„РёР»СЊС‚СЂРѕРІС‹РІР°СЋС‰РёР№
-    /// РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјС‹Рµ Р·Р°РїРёСЃРё</param>
-    /// <param name="ABreaker"> (TFunc<Boolean>) РџСЂРµРґРёРєР°С‚ РїСЂРµСЂС‹РІР°РЅРёСЏ РёС‚РµСЂР°С†РёРё</param>
+    /// <param name="AProc"> (TProc) Процедура выполняемая для записей</param>
+    /// <param name="ADisableControls"> (Boolean) Отключать обновление визуальных
+    /// компоненов подключенных к DataSet</param>
+    /// <param name="AFilter"> (TFunc<Boolean>) Предикат отфильтровывающий
+    /// обрабатываемые записи</param>
+    /// <param name="ABreaker"> (TFunc<Boolean>) Предикат прерывания итерации</param>
     procedure ForEachRecord(AProc: TProc; ADisableControls: Boolean = True;
         AFilter: TFunc<Boolean> = nil; ABreaker: TFunc<Boolean> = nil);
     /// <summary>TDataSetHelper.ForEachField
-    /// РС‚РµСЂР°С‚РѕСЂ РїРѕ РїРѕР»СЏРј DataSet
+    /// Итератор по полям DataSet
     /// </summary>
-    /// <param name="AProc"> (TProc<TField>) РџСЂРѕС†РµРґСѓСЂР° РІС‹РїРѕР»РЅСЏРµРјР°СЏ РґР»СЏ РїРѕР»РµР№</param>
-    /// <param name="AFilter"> (TFunc<TField, Boolean>) РџСЂРµРґРёРєР°С‚ РѕС‚С„РёР»СЊС‚СЂРѕРІС‹РІР°СЋС‰РёР№
-    /// РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјС‹Рµ РїРѕР»СЏ</param>
-    /// <param name="ABreaker"> (TFunc<TField, Boolean>) РџСЂРµРґРёРєР°С‚ РїСЂРµСЂС‹РІР°РЅРёСЏ
-    /// РёС‚РµСЂР°С†РёРё</param>
+    /// <param name="AProc"> (TProc<TField>) Процедура выполняемая для полей</param>
+    /// <param name="AFilter"> (TFunc<TField, Boolean>) Предикат отфильтровывающий
+    /// обрабатываемые поля</param>
+    /// <param name="ABreaker"> (TFunc<TField, Boolean>) Предикат прерывания
+    /// итерации</param>
     procedure ForEachField(AProc: TProc<TField>; AFilter: TFunc<TField, Boolean> =
         nil; ABreaker: TFunc<TField, Boolean> = nil);
     /// <summary>TDataSetHelper.PostIfNeeded
-    /// Р—Р°С„РёРєСЃРёСЂРѕРІР°С‚СЊ РёР·РјРµРЅРµРЅРёСЏ РІ DataSet РµСЃР»Рё РѕРЅ РІ СЂРµР¶РёРјРµ РІСЃС‚Р°РІРєРё РёР»Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+    /// Зафиксировать изменения в DataSet если он в режиме вставки или редактирования
     /// </summary>
     procedure PostIfNeeded;
     /// <summary>TDataSetHelper.EditIfNeeded
-    /// РџРµСЂРµРІРµСЃС‚Рё DataSet РІ СЂРµР¶РёРј СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ РµСЃР»Рё РѕРЅ СѓР¶Рµ РЅРµ РЅР°С…РѕРґРёС‚СЃСЏ РІ СЌС‚РѕРј СЂРµР¶РёРјРµ
+    /// Перевести DataSet в режим редактирования если он уже не находится в этом режиме
     /// </summary>
     procedure EditIfNeeded;
   end;
@@ -58,8 +58,8 @@ type
 implementation
 
 resourcestring
-  SErrDataSetIsNotActive = 'DataSet РЅРµ Р°РєС‚РёРІРµРЅ';
-  SErrForEachRecordAProcIsNil = 'TDataSetHelper.ForEachRecord AProc РЅРµ Р·Р°РґР°РЅ';
+  SErrDataSetIsNotActive = 'DataSet не активен';
+  SErrForEachRecordAProcIsNil = 'TDataSetHelper.ForEachRecord AProc не задан';
 
 procedure TDataSetHelper.EditIfNeeded;
 begin

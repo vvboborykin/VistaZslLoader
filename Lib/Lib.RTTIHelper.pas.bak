@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: Lib.RTTIHelper.pas
-* Description: РњРѕРґСѓР»СЊ СЂР°СЃС€РёСЂРµРЅРёСЏ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё RTTI
+* Description: Модуль расширения функциональности RTTI
 *
 * Created: 20.12.2022 14:37:18
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.RTTIHelper;
 
@@ -15,23 +15,23 @@ uses
 
 type
   /// <summary>TRTTIUtilites
-  /// РЈС‚РёР»РёС‚С‹ СЂР°СЃС€РёСЂРµРЅРёСЏ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё RTTI
+  /// Утилиты расширения функциональности RTTI
   /// </summary>
   TRTTIUtilites = class
   public
     /// <summary>TRTTIUtilites.WithContext
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ РґР»СЏ РєРѕРЅС‚РµРєСЃС‚Р° TRttiContext
+    /// Выполнить процедуру для контекста TRttiContext
     /// </summary>
     /// <param name="AProc"> (TProc<TRttiContext>) </param>
     class procedure WithContext(AProc: TProc<TRttiContext>);
     /// <summary>TRTTIUtilites.WithType
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ РґР»СЏ Р·Р°РґР°РЅРЅРѕРіРѕ С‚РёРїР° PTypeInfo
+    /// Выполнить процедуру для заданного типа PTypeInfo
     /// </summary>
     /// <param name="ATypeInfo"> (PTypeInfo) </param>
     /// <param name="AProc"> (TProc<TRttiType>) </param>
     class procedure WithType(ATypeInfo: PTypeInfo; AProc: TProc<TRttiType>);
     /// <summary>TRTTIUtilites.ForEachProperty
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ РґР»СЏ РєР°Р¶РґРѕРіРѕ СЃРІРѕР№СЃС‚РІР° Р·Р°РґР°РЅРЅРѕРіРѕ С‚РёРїР° PTypeInfo
+    /// Выполнить процедуру для каждого свойства заданного типа PTypeInfo
     /// </summary>
     /// <param name="ATypeInfo"> (PTypeInfo) </param>
     /// <param name="AProc"> (TProc< TRttiProperty>) </param>

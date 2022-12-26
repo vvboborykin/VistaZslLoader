@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: AppOptionsModule.pas
-* Description: РџР°СЂР°РјРµС‚СЂС‹ СЂР°Р±РѕС‚С‹ РїСЂРёР»РѕР¶РµРЅРёСЏ
+* Description: Параметры работы приложения
 *
 * Created: 26.12.2022 11:30:52
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit AppOptionsModule;
 
@@ -21,7 +21,7 @@ uses
 
 type
   /// <summary>TAppOptions
-  /// РџР°СЂР°РјРµС‚СЂС‹ СЂР°Р±РѕС‚С‹ РїСЂРёР»РѕР¶РµРЅРёСЏ
+  /// Параметры работы приложения
   /// </summary>
   TAppOptions = class(TDataModule)
     conMain: TFDConnection;
@@ -96,15 +96,15 @@ implementation
 
 const
   SDefaultDatabaseName = 's11';
-  SDefaultAppUserName = 'РђРґРјРёРЅ';
+  SDefaultAppUserName = 'Админ';
   cDefaultUpdateBatchSize = 50000;
   cDefaultImportBatchSize = 50000;
   cDefaultDbServerName = 'MySqlServer';
 
 resourcestring
   SSourceDirNotExists =
-    'РљР°С‚Р°Р»РѕРі "%s" СЃРѕ СЃРїРёСЃРєР°РјРё Р·Р°СЃС‚СЂР°С…РѕРІР°РЅРЅС‹С… Р»РёС† РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚';
-  SFieldShoudNotBeEmpty = 'РџР°СЂР°РјРµС‚СЂ "%s" РЅРµ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј';
+    'Каталог "%s" со списками застрахованных лиц не существует';
+  SFieldShoudNotBeEmpty = 'Параметр "%s" не должен быть пустым';
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 

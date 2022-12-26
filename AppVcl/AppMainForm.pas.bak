@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: AppMainForm.pas
-* Description: Р“Р»Р°РІРЅР°СЏ С„РѕСЂРјР° РїСЂРёР»РѕР¶РµРЅРёСЏ
+* Description: Главная форма приложения
 *
 * Created: 26.12.2022 11:59:48
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit AppMainForm;
 
@@ -44,10 +44,10 @@ type
     procedure EditOptions;
     function NoGuiMode: Boolean;
     /// <summary>ISubscriber<TBackgroundJobMessage>.OnPublisherMessage
-    /// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РїРѕР»СѓС‡Р°РµРјС‹С… РѕС‚ РёР·РґР°С‚РµР»РµР№
+    /// Обработчик событий получаемых от издателей
     /// </summary>
-    /// <param name="APublisher"> (IPublisher<TBackgroundJobMessage>) РР·РґР°С‚РµР»СЊ</param>
-    /// <param name="AMessage"> (TBackgroundJobMessage) РЎРѕР±С‹С‚РёРµ</param>
+    /// <param name="APublisher"> (IPublisher<TBackgroundJobMessage>) Издатель</param>
+    /// <param name="AMessage"> (TBackgroundJobMessage) Событие</param>
     procedure OnPublisherMessage(APublisher: IPublisher<TBackgroundJobMessage>;
       AMessage: TBackgroundJobMessage); stdcall;
     procedure WaitForLoadingCancellation;
@@ -70,9 +70,9 @@ const
   CMaxCancelTryCount = 100;
 
 resourcestring
-  SCancelTimeoutException = 'РўР°Р№РјР°СѓС‚ РїСЂРµСЂС‹РІР°РЅРёСЏ Р·Р°РіСЂСѓР·РєРё';
-  SCancelLoadingConfirm = 'РџСЂРµСЂРІР°С‚СЊ Р·Р°РіСЂСѓР·РєСѓ Р—РЎР› ?';
-  SAbortLoading = 'РџСЂРµСЂРІР°С‚СЊ Р·Р°РіСЂСѓР·РєСѓ СЃРїРёСЃРєР° Р—РЎР›';
+  SCancelTimeoutException = 'Таймаут прерывания загрузки';
+  SCancelLoadingConfirm = 'Прервать загрузку ЗСЛ ?';
+  SAbortLoading = 'Прервать загрузку списка ЗСЛ';
 
 {$R *.dfm}
 

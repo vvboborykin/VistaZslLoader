@@ -1,10 +1,10 @@
-п»ї{*******************************************************
+{*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: Lib.ComponentHelper.pas
-* Description: Р Р°СЃС€РёСЂРµРЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё TComponent
+* Description: Расширение функциональности TComponent
 *
 * Created: 26.12.2022 11:06:21
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.ComponentHelper;
 
@@ -15,16 +15,16 @@ uses
 
 type
   /// <summary>TComponentHelper
-  /// Р Р°СЃС€РёСЂРµРЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё TComponent
+  /// Расширение функциональности TComponent
   /// </summary>
   TComponentHelper = class helper for TComponent
   public
     /// <summary>TComponentHelper.ForEachSubcomponent
-    /// РС‚РµСЂР°С†РёСЏ РїРѕ РґРѕС‡РµСЂРЅРёРј РєРѕРјРїРѕРЅРµРЅС‚Р°Рј
+    /// Итерация по дочерним компонентам
     /// </summary>
-    /// <param name="AProc"> (TProc<TComponent>) РџСЂРѕС†РµРґСѓСЂР° РІС‹РїРѕР»РЅСЏРµРјР°СЏ РґР»СЏ РґРѕС‡РµСЂРЅРёС…
-    /// РєРѕРјРїРѕРЅРµРЅС‚РѕРІ</param>
-    /// <param name="AMinClass"> (TClass) РњРёРЅРёРјР°Р»СЊРЅС‹Р№ РєР»Р°СЃСЃ РґРѕС‡РµСЂРЅРµРіРѕ РєРѕРјРїРѕРЅРµРЅС‚Р°</param>
+    /// <param name="AProc"> (TProc<TComponent>) Процедура выполняемая для дочерних
+    /// компонентов</param>
+    /// <param name="AMinClass"> (TClass) Минимальный класс дочернего компонента</param>
     procedure ForEachSubcomponent(AProc: TProc<TComponent>; AMinClass:
         TComponentClass); overload;
     procedure ForEachSubcomponent<T: TComponent>(AProc: TProc<T>);
