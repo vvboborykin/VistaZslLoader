@@ -17,7 +17,7 @@ uses
   FireDAC.Phys.SQLiteDef, FireDAC.Stan.ExprFuncs,
   FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.VCLUI.Wait, FireDAC.Stan.Param,
   FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client, System.IOUtils;
+  FireDAC.Comp.Client, System.IOUtils, Lib.CommandLineService;
 
 type
   /// <summary>TAppOptions
@@ -40,6 +40,7 @@ type
     VistaOptionsLastImportRecno: TIntegerField;
     VistaOptionsUpdateBatchSize: TIntegerField;
     VistaOptionsLastUpdatedRecNo: TIntegerField;
+    procedure DataModuleDestroy(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure conMainBeforeConnect(Sender: TObject);
     procedure VistaOptionsAfterOpen(DataSet: TDataSet);
@@ -49,10 +50,45 @@ type
     function GetAppDatabaseFileName: string;
     function GetAppDataDir: string;
     function GetOptionsDbFileName: string;
+    function GetOptionValue(const AName: string): Variant;
     function GetUserDatabaseFileName: string;
   private
+    function GetAppPassword: Variant;
+    function GetAppUserName: Variant;
+    function GetDatabase: Variant;
+    function GetDbPassword: Variant;
+    function GetDbUserName: Variant;
+    function GetId: Variant;
+    function GetImportBatchSize: Variant;
+    function GetLastImportFile: Variant;
+    function GetLastImportRecno: Variant;
+    function GetLastUpdatedRecNo: Variant;
+    function GetServer: Variant;
+    function GetSourceDir: Variant;
+    function GetSourceFilesCheckSum: Variant;
+    function GetUpdateBatchSize: Variant;
+  strict protected
+    FCommandLine: TCommandLineService;
   public
+    property Id: Variant read GetId;
+    property Server: Variant read GetServer;
+    property DbUserName: Variant read GetDbUserName;
+    property DbPassword: Variant read GetDbPassword;
+    property Database: Variant read GetDatabase;
+    property AppUserName: Variant read GetAppUserName;
+    property AppPassword: Variant read GetAppPassword;
+    property SourceDir: Variant read GetSourceDir;
+    property SourceFilesCheckSum: Variant read GetSourceFilesCheckSum;
+    property ImportBatchSize: Variant read GetImportBatchSize;
+    property LastImportFile: Variant read GetLastImportFile;
+    property LastImportRecno: Variant read GetLastImportRecno;
+    property UpdateBatchSize: Variant read GetUpdateBatchSize;
+    property LastUpdatedRecNo: Variant read GetLastUpdatedRecNo;
+
+
     procedure Validate(AErrors: TStrings);
+
+
   end;
 
 var
@@ -61,6 +97,8 @@ var
 implementation
 
 const
+  SDefaultDatabaseName = 's11';
+  SDefaultAppUserName = 'Админ';
   cDefaultUpdateBatchSize = 50000;
   cDefaultImportBatchSize = 50000;
   cDefaultDbServerName = 'MySqlServer';
@@ -68,14 +106,20 @@ const
 resourcestring
   SSourceDirNotExists =
     'Каталог "%s" со списками застрахованных лиц не существует';
-  SFieldShoudNotBeEmpty = 'Поле %s не должно быть пустым';
+  SFieldShoudNotBeEmpty = 'Поле "%s" не должно быть пустым';
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
 
+procedure TAppOptions.DataModuleDestroy(Sender: TObject);
+begin
+  FCommandLine.Free;
+end;
+
 procedure TAppOptions.DataModuleCreate(Sender: TObject);
 begin
+  FCommandLine := TCommandLineService.Create;
   VistaOptions.Open();
 end;
 
@@ -112,9 +156,86 @@ begin
   Result := TPath.Combine(TPath.GetDirectoryName(ParamStr(0)), 'Data');
 end;
 
+function TAppOptions.GetAppPassword: Variant;
+begin
+  Result := GetOptionValue('AppPassword');
+end;
+
+function TAppOptions.GetAppUserName: Variant;
+begin
+  Result := GetOptionValue('AppUserName');
+end;
+
+function TAppOptions.GetDatabase: Variant;
+begin
+  Result := GetOptionValue('Database');
+end;
+
+function TAppOptions.GetDbPassword: Variant;
+begin
+  Result := GetOptionValue('DbPassword');
+end;
+
+function TAppOptions.GetDbUserName: Variant;
+begin
+  Result := GetOptionValue('DbUserName');
+end;
+
+function TAppOptions.GetId: Variant;
+begin
+  Result := GetOptionValue('Get');
+end;
+
+function TAppOptions.GetImportBatchSize: Variant;
+begin
+  Result := GetOptionValue('ImportBatchSize');
+end;
+
+function TAppOptions.GetLastImportFile: Variant;
+begin
+  Result := GetOptionValue('LastImportFile');
+end;
+
+function TAppOptions.GetLastImportRecno: Variant;
+begin
+  Result := GetOptionValue('LastImportRecno');
+end;
+
+function TAppOptions.GetLastUpdatedRecNo: Variant;
+begin
+  Result := GetOptionValue('LastUpdatedRecno');
+end;
+
 function TAppOptions.GetOptionsDbFileName: string;
 begin
   Result := TPath.GetFileNameWithoutExtension(ParamStr(0)) + '.db';
+end;
+
+function TAppOptions.GetOptionValue(const AName: string): Variant;
+begin
+  Result := VistaOptions[AName];
+  if FCommandLine.ValueExists(AName) then
+    Result := FCommandLine.GetValue(AName, '');
+end;
+
+function TAppOptions.GetServer: Variant;
+begin
+  Result := GetOptionValue('Server');
+end;
+
+function TAppOptions.GetSourceDir: Variant;
+begin
+  Result := GetOptionValue('SourceDir');
+end;
+
+function TAppOptions.GetSourceFilesCheckSum: Variant;
+begin
+  Result := GetOptionValue('SourceFilesCheckSum');
+end;
+
+function TAppOptions.GetUpdateBatchSize: Variant;
+begin
+  Result := GetOptionValue('UpdateBatchSize');
 end;
 
 function TAppOptions.GetUserDatabaseFileName: string;
@@ -150,8 +271,8 @@ begin
   VistaOptionsServer.AsString := cDefaultDbServerName;
   VistaOptionsDbUserName.AsString := '';
   VistaOptionsDbPassword.AsString := '';
-  VistaOptionsDatabase.AsString := 's11';
-  VistaOptionsAppUserName.AsString := 'Админ';
+  VistaOptionsDatabase.AsString := SDefaultDatabaseName;
+  VistaOptionsAppUserName.AsString := SDefaultAppUserName;
   VistaOptionsAppPassword.AsString := '';
   VistaOptionsSourceDir.AsString := '';
 

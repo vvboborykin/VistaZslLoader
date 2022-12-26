@@ -71,6 +71,9 @@ implementation
 uses
   AppOptionsModule, Lib.ComponentHelper, TypInfo, DbLib.DataSetHelper;
 
+resourcestring
+  SPleaseFixErrors = 'Пожалуйста исправьте ошибки';
+
 const
   SDataBinding = 'DataBinding';
   cErrorBackgroundColor = clYellow;
@@ -91,7 +94,7 @@ begin
   if not Validate then
   begin
     ModalResult := mrNone;
-    ShowMessage('Пожалуйста исправьте ошибки');
+    ShowMessage(SPleaseFixErrors);
   end
   else
     dsOptions.DataSet.PostIfNeeded();

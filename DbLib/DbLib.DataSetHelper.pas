@@ -41,11 +41,11 @@ type
     procedure ForEachField(AProc: TProc<TField>; AFilter: TFunc<TField, Boolean> =
         nil; ABreaker: TFunc<TField, Boolean> = nil);
     /// <summary>TDataSetHelper.PostIfNeeded
-    /// «афиксировать изменени€ в  DataSet если он в режиме вставки или редактировани€
+    /// «афиксировать изменени€ в DataSet если он в режиме вставки или редактировани€
     /// </summary>
     procedure PostIfNeeded;
     /// <summary>TDataSetHelper.EditIfNeeded
-    /// ѕеревести DataSet в режим редактировани€ если он уже не находитс€ в нем
+    /// ѕеревести DataSet в режим редактировани€ если он уже не находитс€ в этом режиме
     /// </summary>
     procedure EditIfNeeded;
   end;

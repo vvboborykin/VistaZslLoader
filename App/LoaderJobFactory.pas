@@ -20,7 +20,6 @@ type
   /// </summary>
   TLoaderJobFactory = class
   private
-    class procedure LoadOptions(AOptions: TAppOptions);
   public
     /// <summary>TLoaderJobFactory.CreateJob
     /// Создать работу по загрузке ЗСЛ
@@ -39,15 +38,19 @@ begin
   Result := TBackgroundJob.Create('Загрузка ЗСЛ в БД ВистаМед',
     procedure(AJob: IBackgroundJob)
     begin
+      // параметры приложения
       var vOptions := TAppOptions.Create(nil);
-      LoadOptions(vOptions);
       try
         //TODO: реализовать загрузчик
         for var I := 0 to 100 do
         begin
           Sleep(100);
           AJob.Task.CheckCanceled;
-          var vMessage := TJobRichTextMessage.CreateFmt(AJob, 'Итерация %s',  [I.ToString()]);
+
+          var vMessage := TJobRichTextMessage.CreateFmt(AJob,
+            'Итерация %s для БД %s:%s',
+            [I.ToString(), vOptions.Server, vOptions.Database]);
+
           if I mod 2 = 0 then
           begin
             vMessage.RichTextOptions.BackColor.Value := TColorRec.Green;
@@ -62,16 +65,6 @@ begin
         vOptions.Free
       end;
     end);
-end;
-
-class procedure TLoaderJobFactory.LoadOptions(AOptions: TAppOptions);
-begin
-//  var vLoader := TOptionsLoader.Create(nil);
-//  try
-//    vLoader.LoadAppOptions(AOptions);
-//  finally
-//    vLoader.Free;
-//  end;
 end;
 
 end.

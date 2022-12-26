@@ -25,6 +25,15 @@ type
   public
     constructor Create;
     destructor Destroy; override;
+    /// <summary>TCommandLineService.GetValue
+    /// Получить значение параметра по имени
+    /// </summary>
+    /// <returns> String
+    /// </returns>
+    /// <param name="AName"> (string) Имя параметра</param>
+    /// <param name="ADefaultValue"> (string) Значение возвращаемое если параметр не
+    /// задан</param>
+    function GetValue(AName, ADefaultValue: string): String;
     /// <summary>TCommandLineService.SwitchExists
     /// Определить задан ли в командной строке ключ
     /// </summary>
@@ -49,6 +58,8 @@ type
     /// </returns>
     /// <param name="AParameterName"> (string) Имя параметра</param>
     function ValueExists(AParameterName: string): Boolean;
+
+
   end;
 
 implementation
@@ -67,6 +78,12 @@ destructor TCommandLineService.Destroy;
 begin
   FValues.Free;
   inherited Destroy;
+end;
+
+function TCommandLineService.GetValue(AName, ADefaultValue: string): String;
+begin
+  if not TryGetValue(AName, Result) then
+    Result := ADefaultValue;
 end;
 
 procedure TCommandLineService.ParseParameters;
