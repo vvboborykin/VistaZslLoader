@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Windows
 * Unit: LoaderJobFactoryUnit.pas
-* Description: Р¤Р°Р±СЂРёРєР° СЂР°Р±РѕС‚ Р·Р°РіСЂСѓР·РєРё Р—РЎР›
+* Description: Фабрика работ загрузки ЗСЛ
 *
 * Created: 18.12.2022 13:06:45
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit LoaderJobFactory;
 
@@ -16,13 +16,13 @@ uses
 
 type
   /// <summary>TLoaderJobFactory
-  /// Р¤Р°Р±СЂРёРєР° СЂР°Р±РѕС‚ РїРѕ Р·Р°РіСЂСѓР·РєРµ СЃРїРёСЃРєРѕРІ Р—РЎР› РІ Р‘Р” Р’РёСЃС‚Р°РњРµРґ
+  /// Фабрика работ по загрузке списков ЗСЛ в БД ВистаМед
   /// </summary>
   TLoaderJobFactory = class
   private
   public
     /// <summary>TLoaderJobFactory.CreateJob
-    /// РЎРѕР·РґР°С‚СЊ СЂР°Р±РѕС‚Сѓ РїРѕ Р·Р°РіСЂСѓР·РєРµ Р—РЎР›
+    /// Создать работу по загрузке ЗСЛ
     /// </summary>
     /// <returns> IBackgroundJob
     /// </returns>
@@ -35,20 +35,20 @@ implementation
 
 class function TLoaderJobFactory.CreateJob: IBackgroundJob;
 begin
-  Result := TBackgroundJob.Create('Р—Р°РіСЂСѓР·РєР° Р—РЎР› РІ Р‘Р” Р’РёСЃС‚Р°РњРµРґ',
+  Result := TBackgroundJob.Create('Загрузка ЗСЛ в БД ВистаМед',
     procedure(AJob: IBackgroundJob)
     begin
-      // РїР°СЂР°РјРµС‚СЂС‹ РїСЂРёР»РѕР¶РµРЅРёСЏ
+      // параметры приложения
       var vOptions := TAppOptions.Create(nil);
       try
-        //TODO: Р·Р°РіР»СѓС€РєР°. СЂРµР°Р»РёР·РѕРІР°С‚СЊ Р·Р°РіСЂСѓР·С‡РёРє
+        //TODO: заглушка. реализовать загрузчик
         for var I := 0 to 100 do
         begin
           Sleep(100);
           AJob.Task.CheckCanceled;
 
           var vMessage := TJobRichTextMessage.CreateFmt(AJob,
-            'РС‚РµСЂР°С†РёСЏ %s РґР»СЏ Р‘Р” %s:%s',
+            'Итерация %s для БД %s:%s',
             [I.ToString(), vOptions.Server, vOptions.Database]);
 
           if I mod 2 = 0 then

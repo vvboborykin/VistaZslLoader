@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: Lib.StreamHelper.pas
-* Description: Р Р°СЃС€РёСЂРµРЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё TStream
+* Description: Расширение функциональности TStream
 *
 * Created: 21.12.2022 14:02:16
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.StreamHelper;
 
@@ -15,7 +15,7 @@ uses
 
 type
   /// <summary>TStreamHelper
-  /// Р Р°СЃС€РёСЂРµРЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚Рё TStream
+  /// Расширение функциональности TStream
   /// </summary>
   TStreamHelper = class helper for TStream
   public

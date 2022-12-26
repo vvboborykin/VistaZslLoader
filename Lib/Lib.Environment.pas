@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: Lib.Environment.pas
-* Description: Р”Р°РЅРЅС‹Рµ СЂР°Р±РѕС‡РµРіРѕ РѕРєСЂСѓР¶РµРЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹
+* Description: Данные рабочего окружения программы
 *
 * Created: 26.12.2022 14:35:37
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.Environment;
 
@@ -14,31 +14,31 @@ uses
 
 type
   /// <summary>TEnvironment
-  /// Р”Р°РЅРЅС‹Рµ СЂР°Р±РѕС‡РµРіРѕ РѕРєСЂСѓР¶РµРЅРёСЏ РїСЂРѕРіСЂР°РјРјС‹
+  /// Данные рабочего окружения программы
   /// </summary>
   TEnvironment = class
   public
     /// <summary>TEnvironment.GetComputerName
-    /// РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ РєРѕРјРїСЊСЋС‚РµСЂР° РЅР° РєРѕС‚РѕСЂРѕРј РёСЃРїРѕР»РЅСЏРµС‚СЃСЏ РїСЂРѕРіСЂР°РјРјР°
+    /// Получить имя компьютера на котором исполняется программа
     /// </summary>
     /// <returns> string
     /// </returns>
     function GetComputerName: string;
     /// <summary>TEnvironment.GetUserName
-    /// РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РѕРїРµСЂР°С†РёРѕРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹
+    /// Получить имя пользователя операционной системы
     /// </summary>
     /// <returns> string
     /// </returns>
     function GetUserName: string;
     /// <summary>TEnvironment.GetUserDomainName
-    /// РџРѕР»СѓС‡РёС‚СЊ РґРѕРјРµРЅРЅРѕРµ РёРјСЏ С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РѕРїРµСЂР°С†РёРѕРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹ РІ РІРёРґРµ
+    /// Получить доменное имя текущего пользователя операционной системы в виде
     /// UserName@Domain
     /// </summary>
     /// <returns> string
     /// </returns>
     function GetUserDomainName: string;
     /// <summary>TEnvironment.GetDomainName
-    /// РџРѕР»СѓС‡РёС‚СЊ РёРјСЏ РґРѕРјРµРЅР° С‚РµРєСѓС‰РµРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РѕРїРµРїР°С†РёРѕРЅРЅРѕР№ СЃРёСЃС‚РµРјС‹
+    /// Получить имя домена текущего пользователя опепационной системы
     /// </summary>
     /// <returns> string
     /// </returns>
@@ -46,7 +46,7 @@ type
   end;
 
   /// <summary>procedure EnvironmentService
-  /// РџРѕР»СѓС‡РёС‚СЊ РіР»РѕР±Р°Р»СЊРЅС‹Р№ РѕР±СЉРµРєС‚ РґР°РЅРЅС‹С… РѕРєСЂСѓР¶РµРЅРёСЏ
+  /// Получить глобальный объект данных окружения
   /// </summary>
   /// <returns> TEnvironment
   /// </returns>

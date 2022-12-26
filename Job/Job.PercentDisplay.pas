@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Windows
 * Unit: Job.PercentDisplay.pas
-* Description: Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС†РµРЅС‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹
+* Description: Базовый класс для отображения процента выполнения фоновой работы
 *
 * Created: 18.12.2022 14:10:03
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Job.PercentDisplay;
 
@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TPercentDisplay
-  /// Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС†РµРЅС‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹
+  /// Базовый класс для отображения процента выполнения фоновой работы
   /// </summary>
   TPercentDisplay = class abstract(TThreadSafeInterfacedObject,
       IBackgroundJobSubscriber, ISubscriber<TBackgroundJobMessage>)
@@ -25,10 +25,10 @@ type
     procedure OutputPercentToControl(APercent: Double; AMessage:
         TBackgroundJobMessage); virtual; abstract;
     /// <summary>ISubscriber<TMessageData>.OnPublisherMessage
-    /// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РїРѕР»СѓС‡Р°РµРјС‹С… РѕС‚ РёР·РґР°С‚РµР»РµР№
+    /// Обработчик событий получаемых от издателей
     /// </summary>
-    /// <param name="APublisher"> (IPublisher<TMessageData>) РР·РґР°С‚РµР»СЊ</param>
-    /// <param name="AMessage"> (TMessageData) РЎРѕР±С‹С‚РёРµ</param>
+    /// <param name="APublisher"> (IPublisher<TMessageData>) Издатель</param>
+    /// <param name="AMessage"> (TMessageData) Событие</param>
     procedure OnPublisherMessage(APublisher: IPublisher<TBackgroundJobMessage>;
         AMessage: TBackgroundJobMessage); virtual; stdcall;
   public

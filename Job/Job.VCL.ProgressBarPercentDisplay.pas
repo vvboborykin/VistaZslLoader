@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Windows
 * Unit: Job.VCL.ProgressBarPercentDisplay.pas
-* Description: Р”РёСЃРїР»РµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС†РµРЅС‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹ РЅР° РѕСЃРЅРѕРІРµ TProgressBar
+* Description: Дисплей для отображения процента выполнения фоновой работы на основе TProgressBar
 *
 * Created: 18.12.2022 18:18:46
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Job.VCL.ProgressBarPercentDisplay;
 
@@ -17,7 +17,7 @@ uses
 
 type
   /// <summary>TProgressBarPercentDisplay
-  /// Р”РёСЃРїР»РµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС†РµРЅС‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹ РЅР° РѕСЃРЅРѕРІРµ TProgressBar
+  /// Дисплей для отображения процента выполнения фоновой работы на основе TProgressBar
   /// TProgressBar
   /// </summary>
   TProgressBarPercentDisplay = class(TPercentDisplay)

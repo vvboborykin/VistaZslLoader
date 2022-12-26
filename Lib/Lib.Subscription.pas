@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaBillExtractor
 * Unit: SubscriptionUnit.pas
-* Description: РџР°С‚С‚РµСЂРЅ "РїРѕРґРїРёСЃРєР°"
+* Description: Паттерн "подписка"
 *
 * Created: 15.12.2022 13:08:03
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.Subscription;
 
@@ -20,62 +20,62 @@ type
   IPublisher<TMessageData> = interface;
 
   /// <summary>ISubscriber
-  /// РџРѕРґРїРёСЃС‡РёРє
+  /// Подписчик
   /// </summary>
   ISubscriber<TMessageData> = interface
   ['{6C782291-9B1F-4D10-A33B-5A7B04FC910C}']
     /// <summary>ISubscriber<TMessageData>.OnPublisherMessage
-    /// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РїРѕР»СѓС‡Р°РµРјС‹С… РѕС‚ РёР·РґР°С‚РµР»РµР№
+    /// Обработчик событий получаемых от издателей
     /// </summary>
-    /// <param name="APublisher"> (IPublisher<TMessageData>) РР·РґР°С‚РµР»СЊ</param>
-    /// <param name="AMessage"> (TMessageData) РЎРѕР±С‹С‚РёРµ</param>
+    /// <param name="APublisher"> (IPublisher<TMessageData>) Издатель</param>
+    /// <param name="AMessage"> (TMessageData) Событие</param>
     procedure OnPublisherMessage(APublisher: IPublisher<TMessageData>; AMessage:
         TMessageData); stdcall;
   end;
 
   /// <summary>TMessagePredicate<>
-  /// РўРёРї С„СѓРЅРєС†РёРё РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё СЃРѕРѕР±С‰РµРЅРёР№ РґРѕСЃС‚Р°РІР»СЏРµРјС‹С… РїРѕРґРїРёСЃС‡РёРєСѓ
+  /// Тип функции для фильтрации сообщений доставляемых подписчику
   /// </summary>
   /// type:
   /// <param name="AMessage"> (TMessageData) </param>
   TMessagePredicate<TMessageData> = reference to function (AMessage: TMessageData): Boolean;
 
   /// <summary>IPublisher
-  /// РР·РґР°С‚РµР»СЊ
+  /// Издатель
   /// </summary>
   IPublisher<TMessageData> = interface
   ['{9F6B99FC-5211-4E3F-9EEA-BA32C12F95B2}']
     /// <summary>IPublisher<TMessageData>.BroadcastMessage
-    /// Р Р°Р·РѕСЃР»Р°С‚СЊ РґР°РЅРЅС‹Рµ СЃРѕР±С‹С‚РёСЏ РІСЃРµРј РїРѕРґРїРёСЃС‡РёРєР°Рј
+    /// Разослать данные события всем подписчикам
     /// </summary>
-    /// <param name="AMessage"> (TMessageData) Р”Р°РЅРЅС‹Рµ СЃРѕР±С‹С‚РёСЏ</param>
+    /// <param name="AMessage"> (TMessageData) Данные события</param>
     procedure BroadcastMessage(AMessage: TMessageData); stdcall;
     /// <summary>IPublisher<TMessageData>.RegisterSubscriber
-    /// Р—Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°С‚СЊ РїРѕРґРїРёСЃС‡РёРєР°
+    /// Зарегистрировать подписчика
     /// </summary>
-    /// <param name="ASubscriber"> (ISubscriber<TMessageData>) РќРѕРІС‹Р№ РїРѕРґРїРёСЃС‡РёРє</param>
+    /// <param name="ASubscriber"> (ISubscriber<TMessageData>) Новый подписчик</param>
     procedure RegisterSubscriber(ASubscriber: ISubscriber<TMessageData>;
       AMessageFilter: TMessagePredicate<TMessageData> = nil); stdcall;
     /// <summary>IPublisher<TMessageData>.UnRegisterSubscriber
-    /// РћС‚РјРµРЅРёС‚СЊ СЂРµРіРёСЃС‚СЂР°С†РёСЋ РїРѕРґРїРёСЃС‡РёРєР°
+    /// Отменить регистрацию подписчика
     /// </summary>
-    /// <param name="ASubscriber"> (ISubscriber<TMessageData>) РЈРґР°Р»СЏРµРјС‹Р№
-    /// РїРѕРґРїРёСЃС‡РёРє</param>
+    /// <param name="ASubscriber"> (ISubscriber<TMessageData>) Удаляемый
+    /// подписчик</param>
     procedure UnRegisterSubscriber(ASubscriber: ISubscriber<TMessageData>); stdcall;
   end;
 
   /// <summary>TSubscriberRecord
-  /// Р—Р°РїРёСЃСЊ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕРґРїРёСЃС‡РёРєР°
+  /// Запись для хранения регистрации подписчика
   /// </summary>
   TSubscriberRecord<TMessageData> = record
   public
     /// <summary>TSubscriberRecord<>.Subscriber
-    /// РџРѕРґРїРёСЃС‡РёРє
+    /// Подписчик
     /// </summary>
     /// type:ISubscriber<TMessageData>
     Subscriber: ISubscriber<TMessageData>;
     /// <summary>TSubscriberRecord<>.MessageFilter
-    /// Р¤РёР»СЊС‚СЂ РґР»СЏ РІС‹Р±РѕСЂРєРё РґРѕСЃС‚Р°РІР»СЏРµРјС‹С… СЃРѕРѕР±С‰РµРЅРёР№
+    /// Фильтр для выборки доставляемых сообщений
     /// </summary>
     /// type:TMessagePredicate<TMessageData>
     MessageFilter: TMessagePredicate<TMessageData>;
@@ -84,7 +84,7 @@ type
   end;
 
   /// <summary>TPublisher
-  /// Р РµР°Р»РёР·Р°С†РёСЏ IPublisher
+  /// Реализация IPublisher
   /// </summary>
   TPublisher<TMessageData> = class(TThreadSafeInterfacedObject, IPublisher<
     TMessageData>)

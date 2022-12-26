@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Windows
 * Unit: Job.VCL.MemoDisplay.pas
-* Description: РўРµРєСЃС‚РѕРІС‹Р№ РґРёСЃРїР»РµР№ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹ СЃ РІС‹РІРѕРґРѕРј РІ TMemo
+* Description: Текстовый дисплей фоновой работы с выводом в TMemo
 *
 * Created: 18.12.2022 18:10:03
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Job.VCL.MemoDisplay;
 
@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TMemoDisplay
-  /// РўРµРєСЃС‚РѕРІС‹Р№ РґРёСЃРїР»РµР№ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹ СЃ РІС‹РІРѕРґРѕРј РІ TMemo
+  /// Текстовый дисплей фоновой работы с выводом в TMemo
   /// </summary>
   TMemoDisplay = class(TTextDisplay)
   strict protected
