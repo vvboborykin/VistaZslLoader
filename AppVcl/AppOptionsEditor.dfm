@@ -11,6 +11,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
   Font.Name = 'Segoe UI'
   Font.Style = []
   ShowHint = True
+  OnCreate = FormCreate
   TextHeight = 21
   object lacMain: TdxLayoutControl
     Left = 0
@@ -31,6 +32,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 2
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBTextEdit2: TcxDBTextEdit
@@ -45,6 +47,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 3
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBTextEdit3: TcxDBTextEdit
@@ -60,6 +63,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 4
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBTextEdit4: TcxDBTextEdit
@@ -74,6 +78,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 5
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBTextEdit5: TcxDBTextEdit
@@ -88,6 +93,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 6
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBTextEdit6: TcxDBTextEdit
@@ -103,6 +109,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 7
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBTextEdit7: TcxDBTextEdit
@@ -117,6 +124,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.HotTrack = False
       Style.TransparentBorder = False
       TabOrder = 8
+      OnExit = cxDBTextEdit1Exit
       Width = 590
     end
     object cxDBSpinEdit1: TcxDBSpinEdit
@@ -132,6 +140,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.TransparentBorder = False
       Style.ButtonStyle = bts3D
       TabOrder = 9
+      OnExit = cxDBTextEdit1Exit
       Width = 121
     end
     object cxDBSpinEdit2: TcxDBSpinEdit
@@ -147,6 +156,7 @@ object AppOptionsEditorForm: TAppOptionsEditorForm
       Style.TransparentBorder = False
       Style.ButtonStyle = bts3D
       TabOrder = 10
+      OnExit = cxDBTextEdit1Exit
       Width = 121
     end
     object btnOk: TcxButton

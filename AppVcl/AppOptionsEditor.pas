@@ -17,23 +17,7 @@ uses
   dxSkinsCore, cxContainer, cxEdit, dxLayoutcxEditAdapters,
   dxLayoutControlAdapters, Vcl.Menus, dxLayoutContainer, System.Actions,
   Vcl.ActnList, Vcl.StdCtrls, cxButtons, Data.DB, cxClasses, cxMaskEdit,
-  cxSpinEdit, cxDBEdit, cxTextEdit, dxLayoutControl, dxSkinBasic, dxSkinBlack,
-  dxSkinBlue, dxSkinBlueprint, dxSkinCaramel, dxSkinCoffee, dxSkinDarkroom,
-  dxSkinDarkSide, dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
-  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
-  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
-  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
-  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
-  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
-  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
-  dxSkinOffice2013White, dxSkinOffice2016Colorful, dxSkinOffice2016Dark,
-  dxSkinOffice2019Black, dxSkinOffice2019Colorful, dxSkinOffice2019DarkGray,
-  dxSkinOffice2019White, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
-  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringtime, dxSkinStardust,
-  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinTheBezier,
-  dxSkinsDefaultPainters, dxSkinValentine, dxSkinVisualStudio2013Blue,
-  dxSkinVisualStudio2013Dark, dxSkinVisualStudio2013Light, dxSkinVS2010,
-  dxSkinWhiteprint, dxSkinXmas2008Blue;
+  cxSpinEdit, cxDBEdit, cxTextEdit, dxLayoutControl, dxSkinBasic;
 
 type
   TAppOptionsEditorForm = class(TForm)
@@ -67,8 +51,10 @@ type
     actOk: TAction;
     actCancel: TAction;
     dxLayoutSeparatorItem1: TdxLayoutSeparatorItem;
+    procedure FormCreate(Sender: TObject);
     procedure actCancelExecute(Sender: TObject);
     procedure actOkExecute(Sender: TObject);
+    procedure cxDBTextEdit1Exit(Sender: TObject);
     procedure cxDBTextEdit1PropertiesValidate(Sender: TObject;
       var DisplayValue: Variant; var ErrorText: TCaption; var Error: Boolean);
   strict private
@@ -87,8 +73,13 @@ uses
 
 const
   SDataBinding = 'DataBinding';
-
+  cErrorBackgroundColor = clYellow;
 {$R *.dfm}
+
+procedure TAppOptionsEditorForm.FormCreate(Sender: TObject);
+begin
+  Validate;
+end;
 
 procedure TAppOptionsEditorForm.actCancelExecute(Sender: TObject);
 begin
@@ -98,9 +89,17 @@ end;
 procedure TAppOptionsEditorForm.actOkExecute(Sender: TObject);
 begin
   if not Validate then
-    ModalResult := mrNone
+  begin
+    ModalResult := mrNone;
+    ShowMessage('Пожалуйста исправьте ошибки');
+  end
   else
     dsOptions.DataSet.PostIfNeeded();
+end;
+
+procedure TAppOptionsEditorForm.cxDBTextEdit1Exit(Sender: TObject);
+begin
+  Validate;
 end;
 
 procedure TAppOptionsEditorForm.cxDBTextEdit1PropertiesValidate(Sender: TObject;
@@ -156,7 +155,7 @@ begin
   begin
     vControl.Hint := vControl.Hint + IfThen(vControl.Hint = '', '', #13) + AText;
     vControl.ValidateEdit;
-    vControl.Style.Color := clRed;
+    vControl.Style.Color := cErrorBackgroundColor;
   end;
 end;
 
