@@ -168,11 +168,8 @@ begin
   var vErrors := TStringList.Create;
   AppOptions.Validate(vErrors);
   Result := vErrors.Count = 0;
-  if not Result then
-  begin
-    ResetAllErrorMarkers();
-    SetErrorMarkersForInvalidFields(vErrors)
-  end;
+  ResetAllErrorMarkers();
+  SetErrorMarkersForInvalidFields(vErrors);
   vErrors.Free;
 end;
 

@@ -103,7 +103,7 @@ type
   private
     FText: string;
   public
-    constructor Create(ASender: IBackgroundJob; const AText: string); virtual;
+    constructor Create(ASender: IBackgroundJob; const AText: string);
     constructor CreateFmt(ASender: IBackgroundJob; ATemplate: string; AParams:
       array of const);
     function AsString: Variant; override;
