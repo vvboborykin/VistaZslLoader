@@ -37,6 +37,12 @@ type
     /// <param name="AProc"> (TProc< TRttiProperty>) </param>
     class procedure ForEachProperty(ATypeInfo: PTypeInfo; AProc: TProc<
       TRttiProperty>);
+    /// <summary>TRTTIUtilites.IsGenericType
+    /// Определить является ли тип специализацией обобщегго типа (generic)
+    /// </summary>
+    /// <returns> Boolean
+    /// </returns>
+    /// <param name="ATypeInfo"> (PTypeInfo) </param>
     class function IsGenericType(ATypeInfo: PTypeInfo): Boolean;
     class function TryGetGenericClassName(ATypeInfo: PTypeInfo; out AResult:
       string): Boolean;
@@ -64,6 +70,7 @@ begin
       vResult := vResult and AType.IsInstance and AType.Name.Contains('<') and
         AType.Name.Contains('>');
     end);
+  Result := vResult;
 end;
 
 class function TRTTIUtilites.TryGetGenericClassName(ATypeInfo: PTypeInfo; out
