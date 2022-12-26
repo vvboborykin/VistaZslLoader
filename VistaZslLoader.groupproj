@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{97E05901-A9CF-463A-BE03-D8CF33D7F739}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="AppConsole\VistaZslLoader.Console.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="AppVcl\VistaZslLoader.Vcl.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="VistaZslLoader_Console">
+        <MSBuild Projects="AppConsole\VistaZslLoader.Console.dproj"/>
+    </Target>
+    <Target Name="VistaZslLoader_Console:Clean">
+        <MSBuild Projects="AppConsole\VistaZslLoader.Console.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VistaZslLoader_Console:Make">
+        <MSBuild Projects="AppConsole\VistaZslLoader.Console.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="VistaZslLoader_Vcl">
+        <MSBuild Projects="AppVcl\VistaZslLoader.Vcl.dproj"/>
+    </Target>
+    <Target Name="VistaZslLoader_Vcl:Clean">
+        <MSBuild Projects="AppVcl\VistaZslLoader.Vcl.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="VistaZslLoader_Vcl:Make">
+        <MSBuild Projects="AppVcl\VistaZslLoader.Vcl.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="VistaZslLoader_Console;VistaZslLoader_Vcl"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="VistaZslLoader_Console:Clean;VistaZslLoader_Vcl:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="VistaZslLoader_Console:Make;VistaZslLoader_Vcl:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

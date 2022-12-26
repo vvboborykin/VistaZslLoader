@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="VistaZslLoader" id="Project_748" database="Sqlite" >
+	<schema name="Default" >
+		<table name="VistaOptions" >
+			<column name="Id" type="integer" jt="4" mandatory="y" autoincrement="y" />
+			<column name="Server" type="nvarchar" length="100" jt="12" />
+			<column name="DbUserName" type="nvarchar" length="100" jt="12" />
+			<column name="DbPassword" type="nvarchar" length="100" jt="12" />
+			<column name="Database" type="nvarchar" length="100" jt="12" />
+			<column name="AppUserName" type="nvarchar" length="100" jt="12" />
+			<column name="AppPassword" type="nvarchar" length="100" jt="12" />
+			<column name="SourceDir" type="nvarchar" length="255" jt="12" />
+			<column name="SourceFilesCheckSum" type="nvarchar" length="100" jt="12" />
+			<column name="ImportBatchSize" type="integer" jt="4" />
+			<column name="LastImportFile" type="nvarchar" length="255" jt="12" />
+			<column name="LastImportRecno" type="integer" jt="4" />
+			<column name="UpdateBatchSize" type="integer" jt="4" />
+			<column name="LastUpdatedRecNo" type="integer" jt="4" />
+			<index name="Pk_VistaOptions_Id" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+		</table>
+	</schema>
+	<connector name="PlanDd" database="Sqlite" driver_class="org.sqlite.JDBC" driver_jar="sqlite-jdbc-3.30.1.jar" driver_desc="Standard" host="localhost" port="7210" instance="C:/Users/bpost/Documents/Embarcadero/Studio/Projects/VistaZslLoader/Data/VistaZslLoader.db" />
+	<layout name="Default Layout" id="Layout_2238" show_column_type="y" show_relation="columns" >
+		<entity schema="Default" name="VistaOptions" color="C1D8EE" x="48" y="48" />
+	</layout>
+</project>
