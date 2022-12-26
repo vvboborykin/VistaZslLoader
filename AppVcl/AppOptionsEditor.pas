@@ -77,6 +77,7 @@ resourcestring
 const
   SDataBinding = 'DataBinding';
   cErrorBackgroundColor = clYellow;
+
 {$R *.dfm}
 
 procedure TAppOptionsEditorForm.FormCreate(Sender: TObject);

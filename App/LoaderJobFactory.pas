@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TLoaderJobFactory
-  /// Фабрика работ загрузки ЗСЛ
+  /// Фабрика работ по загрузке списков ЗСЛ в БД ВистаМед
   /// </summary>
   TLoaderJobFactory = class
   private
@@ -41,7 +41,7 @@ begin
       // параметры приложения
       var vOptions := TAppOptions.Create(nil);
       try
-        //TODO: реализовать загрузчик
+        //TODO: заглушка. реализовать загрузчик
         for var I := 0 to 100 do
         begin
           Sleep(100);
@@ -58,9 +58,7 @@ begin
           end;
           AJob.SendJobMessage(vMessage);
           AJob.SendJobMessage(TJobPercentDoneMessage.Create(AJob, I));
-        //        if I > 50 then
-        //          raise Exception.Create('Overflow');
-          end;
+        end;
       finally
         vOptions.Free
       end;

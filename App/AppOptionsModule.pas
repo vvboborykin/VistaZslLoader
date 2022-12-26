@@ -84,6 +84,7 @@ type
     property LastImportRecno: Variant read GetLastImportRecno;
     property UpdateBatchSize: Variant read GetUpdateBatchSize;
     property LastUpdatedRecNo: Variant read GetLastUpdatedRecNo;
+    //
     procedure Validate(AErrors: TStrings);
     procedure ValidateUsingCommandLine(AErrors: TStrings);
   end;
@@ -180,7 +181,7 @@ end;
 
 function TAppOptions.GetId: Variant;
 begin
-  Result := GetOptionValue('Get');
+  Result := GetOptionValue('Id');
 end;
 
 function TAppOptions.GetImportBatchSize: Variant;
