@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Console
 * Unit: SingletonUnit.pas
-* Description: РџР°С‚С‚РµСЂРЅ "РѕРґРёРЅРѕС‡РєР°"
+* Description: Паттерн "одиночка"
 *
 * Created: 19.12.2022 13:04:25
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.Singleton;
 
@@ -15,7 +15,7 @@ uses
 
 type
   /// <summary>TSingleton
-  /// РџР°С‚С‚РµСЂРЅ "РѕРґРёРЅРѕС‡РєР°"
+  /// Паттерн "одиночка"
   /// </summary>
   TSingleton<T: class, constructor> = class(TObject)
   strict private

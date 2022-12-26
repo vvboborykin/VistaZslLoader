@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaBillExtractor
 * Unit: ThreadSafeObjectUnit.pas
-* Description: РћР±СЉРµРєС‚ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє СЂРµСЃСѓСЂСЃР°Рј
+* Description: Объект с потокобезопасным доступом к ресурсам
 *
 * Created: 15.12.2022 12:39:31
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.ThreadSafeObject;
 
@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TThreadSafeObject
-  /// РћР±СЉРµРєС‚ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє СЂРµСЃСѓСЂСЃР°Рј
+  /// Объект с потокобезопасным доступом к ресурсам
   /// </summary>
   TThreadSafeObject = class(TObject)
   strict private
@@ -26,27 +26,27 @@ type
     constructor Create;
     destructor Destroy; override;
     /// <summary>TThreadSafeObject.ExecuteInMainThread
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ РІ РіР»Р°РІРЅРѕРј РїРѕС‚РѕРєРµ РїСЂРёР»РѕР¶РµРЅРёСЏ (РґР»СЏ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅРѕР№ СЂР°Р±РѕС‚С‹ СЃ
+    /// Выполнить процедуру в главном потоке приложения (для потокобезопасной работы с
     /// GUI)
     /// </summary>
     /// <param name="AProc"> (TProc) </param>
     class procedure ExecuteInMainThread(AProc: TProc);
     /// <summary>TThreadSafeObject.UsingResourceLock
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє СЂРµСЃСѓСЂСЃСѓ
+    /// Выполнить процедуру с потокобезопасным доступом к ресурсу
     /// </summary>
     /// <param name="AResourceProcessingProc"> (TProc) </param>
     /// <param name="AResourceName"> (string) </param>
     procedure UsingResourceLock(AResourceProcessingProc: TProc; AResourceName:
       string = '');
     /// <summary>TThreadSafeObject.UsingInstanceLock
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє РѕР±СЉРµРєС‚Сѓ
+    /// Выполнить процедуру с потокобезопасным доступом к объекту
     /// </summary>
     /// <param name="AInstanceProcessingProc"> (TProc) </param>
     procedure UsingInstanceLock(AInstanceProcessingProc: TProc);
   end;
 
   /// <summary>TThreadSafeInterfacedObject
-  /// РћР±СЉРµРєС‚ СЂРµР°Р»РёР·С†СЋС‰РёР№ РёРЅС‚РµСЂС„РµР№СЃС‹ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє СЂРµСЃСѓСЂСЃР°Рј
+  /// Объект реализцющий интерфейсы с потокобезопасным доступом к ресурсам
   /// </summary>
   TThreadSafeInterfacedObject = class(TInterfacedObject)
   strict private
@@ -55,19 +55,19 @@ type
     constructor Create;
     destructor Destroy; override;
     /// <summary>TThreadSafeInterfacedObject.UsingResourceLock
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє СЂРµСЃСѓСЂСЃСѓ
+    /// Выполнить процедуру с потокобезопасным доступом к ресурсу
     /// </summary>
     /// <param name="AResourceProcessingProc"> (TProc) </param>
     /// <param name="AResourceName"> (String) </param>
     procedure UsingResourceLock(AResourceProcessingProc: TProc; AResourceName:
       string = '');
     /// <summary>TThreadSafeInterfacedObject.UsingInstanceLock
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ СЃ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅС‹Рј РґРѕСЃС‚СѓРїРѕРј Рє РѕР±СЉРµРєС‚Сѓ
+    /// Выполнить процедуру с потокобезопасным доступом к объекту
     /// </summary>
     /// <param name="AInstanceProcessingProc"> (TProc) </param>
     procedure UsingInstanceLock(AInstanceProcessingProc: TProc);
     /// <summary>TThreadSafeInterfacedObject.ExecuteInMainThread
-    /// Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕС†РµРґСѓСЂСѓ РІ РіР»Р°РІРЅРѕРј РїРѕС‚РѕРєРµ РїСЂРёР»РѕР¶РµРЅРёСЏ (РґР»СЏ РїРѕС‚РѕРєРѕР±РµР·РѕРїР°СЃРЅРѕР№ СЂР°Р±РѕС‚С‹ СЃ
+    /// Выполнить процедуру в главном потоке приложения (для потокобезопасной работы с
     /// GUI)
     /// </summary>
     /// <param name="AProc"> (TProc) </param>

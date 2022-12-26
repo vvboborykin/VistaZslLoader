@@ -12,10 +12,10 @@ type
     FDone: Boolean;
     FConsoleDisplay: TConsoleDisplay;
     /// <summary>ISubscriber<TMessageData>.OnPublisherMessage
-    /// РћР±СЂР°Р±РѕС‚С‡РёРє СЃРѕР±С‹С‚РёР№ РїРѕР»СѓС‡Р°РµРјС‹С… РѕС‚ РёР·РґР°С‚РµР»РµР№
+    /// Обработчик событий получаемых от издателей
     /// </summary>
-    /// <param name="APublisher"> (IPublisher<TMessageData>) РР·РґР°С‚РµР»СЊ</param>
-    /// <param name="AMessage"> (TMessageData) РЎРѕР±С‹С‚РёРµ</param>
+    /// <param name="APublisher"> (IPublisher<TMessageData>) Издатель</param>
+    /// <param name="AMessage"> (TMessageData) Событие</param>
     procedure OnPublisherMessage(APublisher: IPublisher<TBackgroundJobMessage>;
       AMessage: TBackgroundJobMessage); stdcall;
   public

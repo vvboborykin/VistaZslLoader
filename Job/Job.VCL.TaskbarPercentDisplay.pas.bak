@@ -1,11 +1,11 @@
 {*******************************************************
 * Project: VistaZslLoader.Windows
 * Unit: Job.VCL.TaskbarPercentDisplay.pas
-* Description: Р”РёСЃРїР»РµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС†РµРЅС‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ С„РѕРЅРѕРІРѕР№
-*              СЂР°Р±РѕС‚С‹ РЅР° РѕСЃРЅРѕРІРµ TdxTaskbarProgress
+* Description: Дисплей для отображения процента выполнения фоновой
+*              работы на основе TdxTaskbarProgress
 *
 * Created: 18.12.2022 14:10:25
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Job.VCL.TaskbarPercentDisplay;
 
@@ -18,7 +18,7 @@ uses
 
 type
   /// <summary>TTaskbarPercentDisplay
-  /// Р”РёСЃРїР»РµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїСЂРѕС†РµРЅС‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ С„РѕРЅРѕРІРѕР№ СЂР°Р±РѕС‚С‹ РЅР° РѕСЃРЅРѕРІРµ
+  /// Дисплей для отображения процента выполнения фоновой работы на основе
   /// TdxTaskbarProgress
   /// </summary>
   TTaskbarPercentDisplay = class(TPercentDisplay)

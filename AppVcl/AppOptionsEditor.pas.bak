@@ -1,10 +1,10 @@
 {*******************************************************
 * Project: VistaZslLoader.Vcl
 * Unit: AppOptionsEditor.pas
-* Description: Р РµРґР°РєС‚РѕСЂ РїР°СЂР°РјРµС‚СЂРѕРІ СЂР°Р±РѕС‚С‹ РїСЂРёР»РѕР¶РµРЅРёСЏ
+* Description: Редактор параметров работы приложения
 *
 * Created: 26.12.2022 12:01:54
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit AppOptionsEditor;
 
@@ -72,7 +72,7 @@ uses
   AppOptionsModule, Lib.ComponentHelper, TypInfo, DbLib.DataSetHelper;
 
 resourcestring
-  SPleaseFixErrors = 'РџРѕР¶Р°Р»СѓР№СЃС‚Р° РёСЃРїСЂР°РІСЊС‚Рµ РѕС€РёР±РєРё';
+  SPleaseFixErrors = 'Пожалуйста исправьте ошибки';
 
 const
   SDataBinding = 'DataBinding';

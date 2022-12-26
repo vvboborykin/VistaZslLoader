@@ -1,11 +1,11 @@
 {*******************************************************
 * Project: VistaBillExtractor
 * Unit: NullableUnit.pas
-* Description: РћР±РЅСѓР»СЏРµРјРѕРµ С…СЂР°РЅРёР»РёС‰Рµ СЃРєР°Р»СЏСЂРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
-* РЎРј. https://stackoverflow.com/questions/36681676/delphi-and-nullable-types
+* Description: Обнуляемое хранилище скалярного значения
+* См. https://stackoverflow.com/questions/36681676/delphi-and-nullable-types
 *
 * Created: 16.12.2022 16:09:04
-* Copyright (C) 2022 Р‘РѕР±РѕСЂС‹РєРёРЅ Р’.Р’. (bpost@yandex.ru)
+* Copyright (C) 2022 Боборыкин В.В. (bpost@yandex.ru)
 *******************************************************}
 unit Lib.Nullable;
 
@@ -16,7 +16,7 @@ uses
 
 type
   /// <summary>TNullable
-  /// РћР±РЅСѓР»СЏРµРјРѕРµ С…СЂР°РЅРёР»РёС‰Рµ СЃРєР°Р»СЏСЂРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
+  /// Обнуляемое хранилище скалярного значения
   /// </summary>
   TNullable<T> = record
   private
@@ -26,22 +26,22 @@ type
     procedure SetValue(AValue: T);
   public
     /// <summary>TNullable<>.Clear
-    /// РћР±РЅСѓР»РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ
+    /// Обнулить значение
     /// </summary>
     procedure Clear;
     /// <summary>TNullable<>.HasValue
-    /// Р—РЅР°С‡РµРЅРёРµ РїСЂРёСЃРІРѕРµРЅРѕ
+    /// Значение присвоено
     /// </summary>
     /// type:Boolean
     property HasValue: Boolean read FHasValue;
-    /// <summary>TNullable<>.Value РҐСЂР°РЅРёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ (РїСЂРё РѕР±РЅСѓР»РµРЅРЅРѕРј СЃРѕСЃС‚РѕСЏРЅРёРё
-    /// РІС‹Р±СЂР°СЃС‹РІР°РµС‚ РёСЃРєР»СЋС‡РµРЅРёРµ EVariableHasNoValue)
+    /// <summary>TNullable<>.Value Хранимое значение (при обнуленном состоянии
+    /// выбрасывает исключение EVariableHasNoValue)
     /// </summary> type:T
     property Value: T read GetValue write SetValue;
     class operator Implicit(A: T): TNullable<T>;
     /// <summary>TNullable<>.Implicit
-    /// РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІРѕРµРЅРёСЏ СѓРєР°Р·Р°С‚РµР»СЏ. РџСЂРё РїСЂРёСЃРІР°РёРІР°РµРјРѕРј Р·РЅР°С‡РµРЅРёРё РЅРµ СЂР°РІРЅРѕРј nil
-    /// РІС‹Р±СЂР°СЃС‹РІР°РµС‚ РёСЃРєР»СЋС‡РµРЅРёРµ EPointerValueNotAllowed.
+    /// Оператор присвоения указателя. При присваиваемом значении не равном nil
+    /// выбрасывает исключение EPointerValueNotAllowed.
     /// </summary>
     /// <returns> TNullable<T>
     /// </returns>
@@ -62,9 +62,9 @@ type
 implementation
 
 resourcestring
-  SVariableHasNoValue = 'РЈ TNullable РїРµСЂРµРјРµРЅРЅРѕР№ РЅРµС‚ Р·РЅР°С‡РµРЅРёСЏ';
+  SVariableHasNoValue = 'У TNullable переменной нет значения';
   SPointerValueNotAllowed =
-    'РќРµРїСѓСЃС‚РѕР№ СѓРєР°Р·Р°С‚РµР»СЊ РЅРµР»СЊР·СЏ РїСЂРёСЃРІРѕРёС‚СЊ TNullable РїРµСЂРµРјРµРЅРЅРѕР№';
+    'Непустой указатель нельзя присвоить TNullable переменной';
 
 
 { TNullable }
