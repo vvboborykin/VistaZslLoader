@@ -58,8 +58,6 @@ type
     /// </returns>
     /// <param name="AParameterName"> (string) Имя параметра</param>
     function ValueExists(AParameterName: string): Boolean;
-
-
   end;
 
 implementation

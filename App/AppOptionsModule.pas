@@ -84,11 +84,8 @@ type
     property LastImportRecno: Variant read GetLastImportRecno;
     property UpdateBatchSize: Variant read GetUpdateBatchSize;
     property LastUpdatedRecNo: Variant read GetLastUpdatedRecNo;
-
-
     procedure Validate(AErrors: TStrings);
-
-
+    procedure ValidateUsingCommandLine(AErrors: TStrings);
   end;
 
 var
@@ -106,7 +103,7 @@ const
 resourcestring
   SSourceDirNotExists =
     ' аталог "%s" со списками застрахованных лиц не существует';
-  SFieldShoudNotBeEmpty = 'ѕоле "%s" не должно быть пустым';
+  SFieldShoudNotBeEmpty = 'ѕараметр "%s" не должен быть пустым';
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
@@ -255,6 +252,22 @@ begin
   if not TDirectory.Exists(VistaOptionsSourceDir.AsString) then
     AErrors.AddObject(Format(SSourceDirNotExists, [VistaOptionsSourceDir.AsString]),
       VistaOptionsSourceDir);
+end;
+
+procedure TAppOptions.ValidateUsingCommandLine(AErrors: TStrings);
+begin
+  Validate(AErrors);
+  var I := 0;
+  while I < AErrors.Count do
+  begin
+    var vField: TField := AErrors.Objects[I] as TField;
+    if FCommandLine.ValueExists(vField.FieldName) then
+    begin
+      AErrors.Delete(I);
+      Dec(I);
+    end;
+    Inc(I);
+  end;
 end;
 
 procedure TAppOptions.VistaOptionsAfterOpen(DataSet: TDataSet);
