@@ -46,6 +46,9 @@ type
     class function IsGenericType(ATypeInfo: PTypeInfo): Boolean;
     class function TryGetGenericClassName(ATypeInfo: PTypeInfo; out AResult:
       string): Boolean;
+    class function GetInterfaceGuid<T: IInterface>: TGUID;
+    class function GetClassName<T: class>: string;
+    class function GetClassType<T: class>: TClass;
   end;
 
 implementation
@@ -59,6 +62,40 @@ begin
       for var vProp in AType.GetProperties() do
         AProc(vProp);
     end);
+end;
+
+class function TRTTIUtilites.GetClassName<T>: string;
+begin
+  var vResult := '';
+  WithType(TypeInfo(T),
+    procedure(AType: TRTTIType)
+    begin
+      vResult := (AType as TRttiInstanceType).QualifiedName;
+    end);
+  Result := vResult;
+end;
+
+class function TRTTIUtilites.GetClassType<T>: TClass;
+begin
+  var vResult: TClass := nil;
+  WithType(TypeInfo(T),
+    procedure(AType: TRttiType)
+    begin
+      vResult := (AType as TRttiInstanceType).MetaclassType
+    end);
+  Result := vResult;
+end;
+
+class function TRTTIUtilites.GetInterfaceGuid<T>: TGUID;
+begin
+  var vResult: TGUID;
+  WithType(TypeInfo(T),
+    procedure(AType: TRTTIType)
+    begin
+      if AType is TRttiInterfaceType then
+        vResult := (AType as TRttiInterfaceType).GUID;
+    end);
+  Result := vResult;
 end;
 
 class function TRTTIUtilites.IsGenericType(ATypeInfo: PTypeInfo): Boolean;

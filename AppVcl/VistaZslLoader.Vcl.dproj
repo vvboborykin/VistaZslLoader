@@ -137,6 +137,8 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Lib\Lib.ComponentHelper.pas"/>
+        <DCCReference Include="..\App\ImportWorker.pas"/>
+        <DCCReference Include="..\Lib\Lib.Container.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

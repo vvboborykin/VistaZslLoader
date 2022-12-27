@@ -23,7 +23,9 @@ uses
   Lib.Environment in '..\Lib\Lib.Environment.pas',
   AppOptionsEditor in 'AppOptionsEditor.pas' {AppOptionsEditorForm},
   AppOptionsModule in '..\App\AppOptionsModule.pas' {AppOptions: TDataModule},
-  Lib.ComponentHelper in '..\Lib\Lib.ComponentHelper.pas';
+  Lib.ComponentHelper in '..\Lib\Lib.ComponentHelper.pas',
+  ImportWorker in '..\App\ImportWorker.pas',
+  Lib.Container in '..\Lib\Lib.Container.pas';
 
 {$R *.res}
 
